@@ -23,6 +23,7 @@ public class AppStore {
 
         while (!stopFlag) {
             Menu.menuDisplay();
+            try{
             System.out.print("메뉴 번호를 선택해주세요 : ");
             choice = Integer.parseInt(s.nextLine());
 
@@ -55,6 +56,9 @@ public class AppStore {
                         app.menuExit();
                         stopFlag = true;
                 }
+            }
+            }catch(NumberFormatException e){
+                System.out.println("숫자를 입력해주세요");
             }
         }
     }
