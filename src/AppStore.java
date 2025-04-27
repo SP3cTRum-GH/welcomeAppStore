@@ -4,21 +4,12 @@ public class AppStore {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         AppStoreManager app = AppStoreManager.getInstence();
-        int id;
-        String appName;
-        String developer;
-        double version;
-        int price;
+
+        String userName;
         int choice;
 
-        System.out.print("앱이름을 입력해주세요: ");
-        appName = s.nextLine();
-        System.out.print("개발자를 입력해주세요: ");
-        developer = s.nextLine();
-        System.out.print("버전을 입력해주세요: ");
-        version = Double.parseDouble(s.nextLine());
-        System.out.print("가격을 입력해주세요: ");
-        price = Integer.parseInt(s.nextLine());
+        System.out.print("고객 이름을 입력해주세요: ");
+        userName = s.nextLine();
 
         boolean stopFlag = false;
 
@@ -32,7 +23,7 @@ public class AppStore {
             }else{
                 switch(choice){
                     case Menu.APPINFO:
-                        app.menuGuestInfo(appName,developer,version,price);
+                        app.menuGuestInfo(userName);
                         break;
                     case Menu.DOWNLOADAPP:
                         app.showDownloadList();

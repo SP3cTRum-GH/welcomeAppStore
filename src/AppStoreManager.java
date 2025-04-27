@@ -7,9 +7,9 @@ public class AppStoreManager {
         return instance;
     }
 
-    public void menuGuestInfo(String appName, String developer, double version, int price){
-        System.out.println("현재 앱정보");
-        System.out.println("앱이름:"+appName+" 개발자:"+developer+" 앱버전:"+version+" 가격:"+price);
+    public void menuGuestInfo(String userName){
+        System.out.println("현재 고객정보");
+        System.out.println("고객이름:"+userName);
     }
     public void showDownloadList(){
         System.out.println("2. 다운로드된 앱 목록 보기");
