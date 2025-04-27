@@ -1,9 +1,12 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class AppStore {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         AppStoreManager app = AppStoreManager.getInstence();
+        List<App> phoneAppList = new ArrayList<>();
 
         String userName;
         int choice;
@@ -29,7 +32,7 @@ public class AppStore {
                         app.showDownloadList();
                         break;
                     case Menu.INSTALLAPP:
-                        app.searchInstall();
+                        app.searchInstall(phoneAppList);
                         break;
                     case Menu.UPDATEAPP:
                         app.updateApp();
