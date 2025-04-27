@@ -1,7 +1,7 @@
 public class User {
     private String name;
     private String phone;
-    private String address;
+    private String cardNumber;
 
     public User() {
         this(null,null);
@@ -11,10 +11,10 @@ public class User {
         this(name,phone,null);
     }
 
-    public User(String name, String phone, String address) {
+    public User(String name, String phone, String cardNumber) {
         this.name = name;
         this.phone = phone;
-        this.address = address;
+        this.cardNumber = cardNumber;
     }
 
     public String getName() {
@@ -33,12 +33,12 @@ public class User {
         this.phone = phone;
     }
 
-    public String getAddress() {
-        return address;
+    public String getCardNumber() {
+        return cardNumber;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class User {
         return "User{" +
                 "name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
-                ", address='" + address + '\'' +
+                ", cardNumber='" + cardNumber + '\'' +
                 '}';
     }
 }

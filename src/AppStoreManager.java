@@ -1,7 +1,9 @@
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,7 +30,7 @@ public class AppStoreManager {
             }
         }
     }
-    public void searchInstall(List<App> appList){
+    public void searchInstall(List<App> appList,User user){
         // System.out.println("3. 앱검색 및 설치");
         List<App> storeAppList = new ArrayList<>();
         loadAppList(storeAppList);
@@ -42,12 +44,38 @@ public class AppStoreManager {
         for(App app : storeAppList){
             if(app.getName().equals(appName)){
                 isSearch = true;
-                System.out.println(appName+ "앱을 설치하시겠습니까?(y/n).");
+                System.out.print(appName+ "앱을 설치하시겠습니까?(y/n)");
                 String choice = scan.nextLine().toLowerCase();
                 if(choice.equals("y")){
-                    System.out.println(appName+ "앱을 설치합니다.");
-                    appList.add(app);
-                    break;
+                    if(app.getPrice() > 0){
+                        System.out.print("이 앱은 유료앱입니다. 결제하시겠습니까(y/n) ");
+                        String paymentChoice = scan.nextLine().toLowerCase();
+                        if(user.getCardNumber() == null){
+                            System.out.print("등록된 카드가 없습니다. 카드번호 입력: ");
+                            String cardNumber = scan.nextLine();
+                            user.setCardNumber(cardNumber);
+                        }
+                        String confirm = "";
+                        while(!confirm.equals("y")){
+                            System.out.println(user);
+                            System.out.println("결제정보를 확인해주세요(y/n)");
+                            confirm = scan.nextLine().toLowerCase();
+                            if(confirm.equals("y")){
+                                payment(user.getName(), user.getPhone(), user.getCardNumber());
+                                System.out.println(appName+ "앱을 설치합니다.");
+                                appList.add(app);
+                                break;
+                            }else{
+                                System.out.print("결제할카드번호 입력: ");
+                                String cardNumber = scan.nextLine();
+                                user.setCardNumber(cardNumber);
+                            }
+                        }
+                    }else{
+                        System.out.println(appName+ "앱을 설치합니다.");
+                        appList.add(app);
+                        break;
+                    }
                 }
             }
         }
@@ -87,8 +115,16 @@ public class AppStoreManager {
             }
         }
     }
-    public void receipt(){
+    public void receipt(List<App> appList){
         System.out.println("6. 결제내역 표시하기");
+        int totalPrice = 0;
+        for(App app : appList){
+           if(app.getPrice() > 0){
+            System.out.println(app);
+            totalPrice += app.getPrice();
+           }
+        }
+        System.out.println("총 결제액 : " + totalPrice);
     }
     public void adminLogin(User user){
         System.out.println("7. 관리자 로그인");
@@ -128,5 +164,15 @@ public class AppStoreManager {
         } catch (FileNotFoundException ex) {
             System.out.println("파일을 찾을 수 없습니다.");
         }
+    }
+
+    private void payment(String name, String phone, String cardNumber){
+        Date date = new Date(); 
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy"); 
+        String strDate = formatter.format(date); 
+        System.out.println();
+        System.out.println("---------------유료 앱 결제 정보----------------");
+        System.out.println("고객명 : " +  name + "\t\t 연락처 : " + phone);
+        System.out.println("카드번호 : " + cardNumber + "\t 다운로드일 : " + strDate);
     }
 }

@@ -37,7 +37,7 @@ public class AppStore {
                         app.showDownloadList(phoneAppList);
                         break;
                     case Menu.INSTALLAPP:
-                        app.searchInstall(phoneAppList);
+                        app.searchInstall(phoneAppList,user);
                         break;
                     case Menu.UPDATEAPP:
                         app.updateApp();
@@ -46,7 +46,7 @@ public class AppStore {
                         app.deleteApp(phoneAppList);
                         break;
                     case Menu.RECEIPT:
-                        app.receipt();
+                        app.receipt(phoneAppList);
                         break;
                     case Menu.ADMINLOGIN:
                         app.adminLogin(user);
