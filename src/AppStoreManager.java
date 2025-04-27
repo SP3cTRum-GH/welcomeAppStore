@@ -61,8 +61,25 @@ public class AppStoreManager {
     public void receipt(){
         System.out.println("6. 결제내역 표시하기");
     }
+    public void adminLogin(User user){
+        System.out.println("7. 관리자 로그인");
+        System.out.println("관리자 정보를 입력하세요");
+        Scanner input = new Scanner(System.in);
+        System.out.print("아이디 : "); 
+        String adminId = input.nextLine();
+        System.out.print("비밀번호 : "); 
+        String adminPW = input.nextLine();
+
+        Admin admin = new Admin(user.getName(), user.getPhone());
+        if (adminId.equals(admin.getId()) && adminPW.equals(admin.getPwd())) { 
+            System.out.println("이름 : " + admin.getName() + ", 연락처 : " + admin.getPhone()); 
+            System.out.println("아이디 : " + admin.getId() + ", 비밀번호 : " + admin.getPwd());
+        } else { 
+            System.out.println("관리자 정보가 일치하지 않습니다.");
+        }
+    }
     public void menuExit(){
-        System.out.println("7.종료");
+        System.out.println("8. 종료");
     }
 
     private void loadAppList(List<App> appList){

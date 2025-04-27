@@ -16,6 +16,8 @@ public class AppStore {
         userName = s.nextLine();
         System.out.print("연락처를 입력해주세요: ");
         phoneNumber = s.nextLine();
+        //사용자정보 저장
+        User user = new User(userName, phoneNumber);
 
         boolean stopFlag = false;
 
@@ -24,8 +26,8 @@ public class AppStore {
             System.out.print("메뉴 번호를 선택해주세요 : ");
             choice = Integer.parseInt(s.nextLine());
 
-            if(choice<1 || 7<choice) {
-                System.out.println("1~7까지의 숫자을 입력하세요");
+            if(choice<1 || 8<choice) {
+                System.out.println("1~8까지의 숫자을 입력하세요");
             }else{
                 switch(choice){
                     case Menu.APPINFO:
@@ -45,6 +47,9 @@ public class AppStore {
                         break;
                     case Menu.RECEIPT:
                         app.receipt();
+                        break;
+                    case Menu.ADMINLOGIN:
+                        app.adminLogin(user);
                         break;
                     default:
                         app.menuExit();
