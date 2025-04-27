@@ -14,6 +14,7 @@ public class AdminManager {
     public void adminPage(List<App> storeList){
         boolean stopFlag = false;
         while(!stopFlag){
+            Menu.clear();
             Menu.adminMenu();
             Scanner scan = new Scanner(System.in);
             System.out.print("메뉴 번호를 선택해주세요 : ");
@@ -37,6 +38,8 @@ public class AdminManager {
                 default:
                     System.out.println("1~5까지의 숫자을 입력하세요");
             }
+            System.out.println("계속하려면 아무버튼을 눌러주세요");
+            scan.nextLine();
         }
         System.out.println("관리자화면을 종료합니다.");
     }

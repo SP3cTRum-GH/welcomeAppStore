@@ -29,5 +29,24 @@ public interface Menu {
         System.out.println("\t\t\t" +" 5. 종료");
         System.out.println("***************************************************");
     }
+
+    public static void clear() {
+        try {
+            String operatingSystem = System.getProperty("os.name");
+            ProcessBuilder pb;
+            Process startProcess;
+            if (operatingSystem.contains("Windows")) {
+                pb = new ProcessBuilder(new String[]{"cmd", "/c", "cls"});
+                startProcess = pb.inheritIO().start();
+                startProcess.waitFor();
+            } else {
+                pb = new ProcessBuilder(new String[]{"clear"});
+                startProcess = pb.inheritIO().start();
+                startProcess.waitFor();
+            }
+        } catch (Exception var3) {
+            System.out.println(var3);
+        }
+    }
 }
 
