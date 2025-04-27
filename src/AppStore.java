@@ -7,7 +7,8 @@ public class AppStore {
         Scanner s = new Scanner(System.in);
         AppStoreManager app = AppStoreManager.getInstence();
         List<App> phoneAppList = new ArrayList<>();
-
+        List<App> storeAppList = new ArrayList<>();
+        app.loadAppList(storeAppList);
         String userName;
         String phoneNumber;
         int choice;
@@ -16,7 +17,7 @@ public class AppStore {
         userName = s.nextLine();
         System.out.print("연락처를 입력해주세요: ");
         phoneNumber = s.nextLine();
-        //사용자정보 저장
+        
         User user = new User(userName, phoneNumber);
 
         boolean stopFlag = false;
@@ -38,7 +39,7 @@ public class AppStore {
                         app.showDownloadList(phoneAppList);
                         break;
                     case Menu.INSTALLAPP:
-                        app.searchInstall(phoneAppList,user);
+                        app.searchInstall(phoneAppList,user,storeAppList);
                         break;
                     case Menu.UPDATEAPP:
                         app.updateApp();
@@ -50,7 +51,11 @@ public class AppStore {
                         app.receipt(phoneAppList);
                         break;
                     case Menu.ADMINLOGIN:
-                        app.adminLogin(user);
+                        boolean isAdmin = app.adminLogin(user);
+                        if(isAdmin){
+                            AdminManager adminManager = AdminManager.getInstence();
+                            adminManager.adminPage(storeAppList);
+                        }
                         break;
                     default:
                         app.menuExit();

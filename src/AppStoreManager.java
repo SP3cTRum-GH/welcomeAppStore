@@ -2,7 +2,6 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -30,10 +29,8 @@ public class AppStoreManager {
             }
         }
     }
-    public void searchInstall(List<App> appList,User user){
+    public void searchInstall(List<App> appList,User user,List<App> storeAppList){
         // System.out.println("3. 앱검색 및 설치");
-        List<App> storeAppList = new ArrayList<>();
-        loadAppList(storeAppList);
         for(App app : storeAppList){
             System.out.println(app);
         }
@@ -126,7 +123,7 @@ public class AppStoreManager {
         }
         System.out.println("총 결제액 : " + totalPrice);
     }
-    public void adminLogin(User user){
+    public boolean  adminLogin(User user){
         System.out.println("7. 관리자 로그인");
         System.out.println("관리자 정보를 입력하세요");
         Scanner input = new Scanner(System.in);
@@ -139,15 +136,17 @@ public class AppStoreManager {
         if (adminId.equals(admin.getId()) && adminPW.equals(admin.getPwd())) { 
             System.out.println("이름 : " + admin.getName() + ", 연락처 : " + admin.getPhone()); 
             System.out.println("아이디 : " + admin.getId() + ", 비밀번호 : " + admin.getPwd());
+            return true;
         } else { 
             System.out.println("관리자 정보가 일치하지 않습니다.");
+            return false;
         }
     }
     public void menuExit(){
         System.out.println("8. 종료");
     }
 
-    private void loadAppList(List<App> appList){
+    public void loadAppList(List<App> appList){
         FileInputStream file;
         try {
             file = new FileInputStream("src/res/appList.txt");
