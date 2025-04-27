@@ -31,7 +31,7 @@ public class AppStore {
             }else{
                 switch(choice){
                     case Menu.APPINFO:
-                        app.menuGuestInfo(userName, phoneNumber);
+                        app.menuGuestInfo(user);
                         break;
                     case Menu.DOWNLOADAPP:
                         app.showDownloadList(phoneAppList);
@@ -43,7 +43,7 @@ public class AppStore {
                         app.updateApp();
                         break;
                     case Menu.DELETEAPP:
-                        app.deleteApp();
+                        app.deleteApp(phoneAppList);
                         break;
                     case Menu.RECEIPT:
                         app.receipt();

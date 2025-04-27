@@ -14,15 +14,18 @@ public class AppStoreManager {
         return instance;
     }
 
-    public void menuGuestInfo(String userName, String phoneNumber){
+    public void menuGuestInfo(User user){
         System.out.println("현재 고객정보");
-        User user = new User(userName, phoneNumber);
         System.out.println(user);
     }
     public void showDownloadList(List<App> appList){
         System.out.println("2. 다운로드된 앱 목록 보기");
-        for(App app : appList){
-            System.out.println(app);
+        if(appList.isEmpty()){
+            System.out.println("다운로드된 앱이 없습니다.");
+        }else{
+            for(App app : appList){
+                System.out.println(app);
+            }
         }
     }
     public void searchInstall(List<App> appList){
@@ -55,8 +58,34 @@ public class AppStoreManager {
     public void updateApp(){
         System.out.println("4.앱 업데이트");
     }
-    public void deleteApp(){
+    public void deleteApp(List<App> appList){
         System.out.println("5. 앱 삭제하기");
+        if(appList.isEmpty()){
+            System.out.println("다운로드된 앱이 없습니다.");
+        }else{
+            for(App app : appList){
+                System.out.println(app);
+            }
+            Scanner scan = new Scanner(System.in);
+            System.out.print("삭제할 앱 이름을 입력해주세요: ");
+            String appName = scan.nextLine();
+            boolean isSearch = false;
+            for(App app : appList){
+                if(app.getName().equals(appName)){
+                    isSearch = true;
+                    System.out.println(appName+ "앱을 삭제하시겠습니까?(y/n).");
+                    String choice = scan.nextLine().toLowerCase();
+                    if(choice.equals("y")){
+                        System.out.println(appName+ "앱을 삭제합니다.");
+                        appList.remove(app);
+                        break;
+                    }
+                }
+            }
+            if(!isSearch){
+                System.out.println("해당 앱은 다운로드 되지 않았습니다.");
+            }
+        }
     }
     public void receipt(){
         System.out.println("6. 결제내역 표시하기");
