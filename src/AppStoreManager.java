@@ -14,12 +14,16 @@ public class AppStoreManager {
         return instance;
     }
 
-    public void menuGuestInfo(String userName){
+    public void menuGuestInfo(String userName, String phoneNumber){
         System.out.println("현재 고객정보");
-        System.out.println("고객이름:"+userName);
+        User user = new User(userName, phoneNumber);
+        System.out.println(user);
     }
-    public void showDownloadList(){
+    public void showDownloadList(List<App> appList){
         System.out.println("2. 다운로드된 앱 목록 보기");
+        for(App app : appList){
+            System.out.println(app);
+        }
     }
     public void searchInstall(List<App> appList){
         // System.out.println("3. 앱검색 및 설치");

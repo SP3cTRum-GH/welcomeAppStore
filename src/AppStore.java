@@ -9,10 +9,13 @@ public class AppStore {
         List<App> phoneAppList = new ArrayList<>();
 
         String userName;
+        String phoneNumber;
         int choice;
 
         System.out.print("고객 이름을 입력해주세요: ");
         userName = s.nextLine();
+        System.out.print("연락처를 입력해주세요: ");
+        phoneNumber = s.nextLine();
 
         boolean stopFlag = false;
 
@@ -26,10 +29,10 @@ public class AppStore {
             }else{
                 switch(choice){
                     case Menu.APPINFO:
-                        app.menuGuestInfo(userName);
+                        app.menuGuestInfo(userName, phoneNumber);
                         break;
                     case Menu.DOWNLOADAPP:
-                        app.showDownloadList();
+                        app.showDownloadList(phoneAppList);
                         break;
                     case Menu.INSTALLAPP:
                         app.searchInstall(phoneAppList);
