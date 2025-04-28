@@ -53,12 +53,11 @@ public class AppStoreManager {
                             String cardNumber = scan.nextLine();
                             user.setCardNumber(cardNumber);
                         }
-                        String confirm = "";
-                        while(!confirm.equals("y")){
+                        while(!paymentChoice.equals("y")){
                             System.out.println(user);
                             System.out.println("결제정보를 확인해주세요(y/n)");
-                            confirm = scan.nextLine().toLowerCase();
-                            if(confirm.equals("y")){
+                            paymentChoice = scan.nextLine().toLowerCase();
+                            if(paymentChoice.equals("y")){
                                 payment(user.getName(), user.getPhone(), user.getCardNumber());
                                 System.out.println(appName+ "앱을 설치합니다.");
                                 appList.add(new App(app.getName(),app.getDeveloper(),app.getVersion(),app.getPrice()));
