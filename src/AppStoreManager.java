@@ -2,6 +2,7 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -60,7 +61,7 @@ public class AppStoreManager {
                             if(confirm.equals("y")){
                                 payment(user.getName(), user.getPhone(), user.getCardNumber());
                                 System.out.println(appName+ "앱을 설치합니다.");
-                                appList.add(app);
+                                appList.add(new App(app.getName(),app.getDeveloper(),app.getVersion(),app.getPrice()));
                                 break;
                             }else{
                                 System.out.print("결제할카드번호 입력: ");
@@ -70,7 +71,7 @@ public class AppStoreManager {
                         }
                     }else{
                         System.out.println(appName+ "앱을 설치합니다.");
-                        appList.add(app);
+                        appList.add(new App(app.getName(),app.getDeveloper(),app.getVersion(),app.getPrice()));
                         break;
                     }
                 }
@@ -80,8 +81,48 @@ public class AppStoreManager {
             System.out.println("해당 앱은 없습니다.");
         }
     }
-    public void updateApp(){
+    public void updateApp(List<App>downloadList,List<App>storeList){
         System.out.println("4.앱 업데이트");
+        boolean isUpdateable = false;
+        List<App>updateable = new ArrayList<>();
+        for (App downloadApp : downloadList) {
+            for (App storeApp : storeList) {
+                if (downloadApp.getName().equals(storeApp.getName())) {
+                    if (downloadApp.getVersion() < storeApp.getVersion()) {
+                        isUpdateable = true;
+                        System.out.println("업데이트 가능 앱: "+downloadApp);
+                        System.out.println("최신 버전:"+storeApp);
+                        updateable.add(downloadApp);
+                    }
+                    break;
+                }
+            }
+        }
+        if(!isUpdateable){
+            System.out.println("업데이트 가능한 앱이 없습니다.");
+        }
+        else {
+            System.out.println("어떤 앱을 업데이트 할까요?");
+            Scanner scan = new Scanner(System.in);
+            String appName = scan.nextLine();
+            boolean isSearch = false;
+            for (App app : updateable) {
+                if (app.getName().equals(appName)) {
+                    isSearch = true;
+                    for (App storeApp : storeList) {
+                        if (storeApp.getName().equals(appName)) {
+                                System.out.println(appName + " 앱을 업데이트합니다.");
+                                app.setVersion(storeApp.getVersion());
+                            }
+                            break;
+                        }
+                    break;
+                }
+            }
+            if (!isSearch) {
+                System.out.println("해당 앱은 다운로드 되지 않았습니다.");
+            }
+        }
     }
     public void deleteApp(List<App> appList){
         System.out.println("5. 앱 삭제하기");

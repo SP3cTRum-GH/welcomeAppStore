@@ -43,7 +43,7 @@ public class AppStore {
                         app.searchInstall(phoneAppList,user,storeAppList);
                         break;
                     case Menu.UPDATEAPP:
-                        app.updateApp();
+                        app.updateApp(phoneAppList,storeAppList);
                         break;
                     case Menu.DELETEAPP:
                         app.deleteApp(phoneAppList);
