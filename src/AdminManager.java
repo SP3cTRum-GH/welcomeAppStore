@@ -104,10 +104,28 @@ public class AdminManager {
         boolean isSearch = false;
         for(App app : storeList){
             if(app.getName().equals(appName)){
-                System.out.print("앱 버전을 입력해주세요: ");
-                double appVersion = Double.parseDouble(scan.nextLine());
-                System.out.print("앱 가격을 입력해주세요: ");
-                int appPrice = Integer.parseInt(scan.nextLine());
+                double appVersion = 0.0;
+                int appPrice = 0;
+                while (true) {
+                    System.out.print("앱 버전을 입력해주세요: ");
+                    String input = scan.nextLine();
+                    try {
+                        appVersion = Double.parseDouble(input);
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println("잘못된 입력입니다. 숫자(실수)만 입력해주세요.");
+                    }
+                }
+                while (true) {
+                    System.out.print("앱 가격을 입력해주세요: ");
+                    String input = scan.nextLine();
+                    try {
+                        appPrice = Integer.parseInt(input);
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println("잘못된 입력입니다. 숫자(정수)만 입력해주세요.");
+                    }
+                }
                 app.setVersion(appVersion);
                 app.setPrice(appPrice);
                 System.out.println("앱을 업데이트 했습니다.");
