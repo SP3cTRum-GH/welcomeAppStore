@@ -214,6 +214,7 @@ public class AppStoreManager {
         int totalPage = (appList.size() + pageSize - 1) / pageSize;
 
         while (true) {
+            Menu.clear();
             int start = (page - 1) * pageSize;
             int end = Math.min(start + pageSize, appList.size());
 
@@ -238,7 +239,16 @@ public class AppStoreManager {
             } else if (input.equals("q")) {
                 break;
             } else {
-                System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+                try {
+                    int selectedPage = Integer.parseInt(input);
+                    if (selectedPage >= 1 && selectedPage <= totalPage) {
+                        page = selectedPage;
+                    } else {
+                        System.out.println("잘못된 페이지 번호입니다. 다시 입력해주세요.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+                }
             }
         }
     }

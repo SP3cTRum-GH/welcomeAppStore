@@ -14,6 +14,7 @@ public class App {
         this.price = price;
     }
 
+
     public String getName() {
         return name;
     }
