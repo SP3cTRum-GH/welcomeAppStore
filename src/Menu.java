@@ -9,16 +9,14 @@ public interface Menu {
     public static final int EXIT = 8;
 
     public static void menuDisplay() {
-        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃                                                      ┃");
-        System.out.println("┃               *    Welcome AppStore    *         　　 ┃");
-        System.out.println("┃                                                      ┃");
-        System.out.println("┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫");
-        System.out.println("┃  1. 고객정보 확인하기             4. 앱 업데이트       　    ┃");
-        System.out.println("┃  2. 다운로드된 앱 목록 보기        5. 앱 삭제하기           　┃");
-        System.out.println("┃  3. 앱 검색 및 설치              6. 결제내역 표시하기　　　　 　┃");
-        System.out.println("┃  7. 관리자 로그인                8. 종료                　┃");
-        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        System.out.println("               *    Welcome AppStore    *         　　 ");
+        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        System.out.println("  1. 고객정보 확인하기             4. 앱 업데이트       　    ");
+        System.out.println("  2. 다운로드된 앱 목록 보기        5. 앱 삭제하기           　");
+        System.out.println("  3. 앱 검색 및 설치              6. 결제내역 표시하기　　　　 　");
+        System.out.println("  7. 관리자 로그인                8. 종료                　");
+        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     }
     public static void adminMenu(){
         System.out.println("***************************************************");
