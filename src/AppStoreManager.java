@@ -81,7 +81,9 @@ public class AppStoreManager {
         List<App>updateable = new ArrayList<>();
         for (App downloadApp : downloadList) {
             for (App storeApp : storeList) {
-                if (downloadApp.getName().equals(storeApp.getName()) && downloadApp.getVersion() < storeApp.getVersion()) {
+
+                if (downloadApp.getName().equals(storeApp.getName()) && downloadApp.getVersion() != storeApp.getVersion()) {
+
                     System.out.println("업데이트 가능 앱: "+downloadApp);
                     System.out.println("최신 버전:"+storeApp);
                     updateable.add(downloadApp);
